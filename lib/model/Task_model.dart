@@ -1,16 +1,50 @@
 import 'dart:ui';
-
-class Task{
-  String Task_name;
-  String Date;
-  String Start_time;
-  String End_Time;
-  String Description;
-  String Catagory;
-  Color color;
-
-  Task(this.Task_name, this.Date, this.Start_time, this.End_Time,
-      this.Description, this.Catagory,this.color);
+import 'dart:convert';
 
 
+class Task {
+  Task({
+    required this.catagory,
+    required this.color,
+    required this.date,
+    required this.description,
+    required this.endTime,
+    required this.startTime,
+    required this.taskName,
+    required this.id,
+  }){
+    colorint=Color(int.parse(this.color));
+  }
+
+  late Color colorint;
+  String catagory;
+  String color;
+  String date;
+  String description;
+  String endTime;
+  String startTime;
+  String taskName;
+  int id;
+
+  factory Task.fromJson(Map<String, dynamic> json) => Task(
+    catagory: json["Catagory"],
+    color: json["Color"],
+    date: json["Date"],
+    description: json["Description"],
+    endTime: json["End_Time"],
+    startTime: json["Start_time"],
+    taskName: json["Task_name"],
+    id: json["id"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "Catagory": catagory,
+    "Color": color,
+    "Date": date,
+    "Description": description,
+    "End_Time": endTime,
+    "Start_time": startTime,
+    "Task_name": taskName,
+    "id": id,
+  };
 }
